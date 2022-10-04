@@ -1,7 +1,5 @@
 package com.facturator.bill.crud.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ public class BillProduct {
 	
 	@ManyToOne
 	@JoinColumn(name="fac_numero")
-	private Facture fcNumero;
+	private Bill fcNumero;
 
 	@ManyToOne
 	@JoinColumn(name="pro_reference")
@@ -35,7 +33,7 @@ public class BillProduct {
 		
 	}
 
-	public BillProduct(int fcId, Facture fcNumero, Product fcReference, Double fcQuantite) {
+	public BillProduct(int fcId, Bill fcNumero, Product fcReference, Double fcQuantite) {
 		this.fcId = fcId;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
@@ -50,11 +48,11 @@ public class BillProduct {
 		this.fcId = fcId;
 	}
 
-	public Facture getFcNumero() {
+	public Bill getFcNumero() {
 		return fcNumero;
 	}
 
-	public void setFcNumero(Facture fcNumero) {
+	public void setFcNumero(Bill fcNumero) {
 		this.fcNumero = fcNumero;
 	}
 

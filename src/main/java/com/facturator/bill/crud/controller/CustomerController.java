@@ -16,39 +16,39 @@ import com.facturator.bill.crud.entity.Customer;
 import com.facturator.bill.crud.service.CustomerService;
 
 @RestController
-@RequestMapping("/facturation")
+@RequestMapping("/billing")
 public class CustomerController {
 	
 	@Autowired
-	private CustomerService cs;
+	private CustomerService customerService;
 	
-	@PostMapping("/client")
-	public Customer saveCustomer(@RequestBody Customer cli) {
-		Customer newCustomer = cs.saveCustomer(cli);
+	@PostMapping("/customer")
+	public Customer saveCustomer(@RequestBody Customer customer) {
+		Customer newCustomer = customerService.saveCustomer(customer);
 		return newCustomer;
 	}
 	
-	@GetMapping("/listeclient")
+	@GetMapping("/listCustomer")
 	public List<Customer> allCustomer(){
-		List<Customer> listAllCustomer = cs.allCustomer();
+		List<Customer> listAllCustomer = customerService.allCustomer();
 		return listAllCustomer;
 	}
 	
-	@GetMapping("/listeclient/{cNumero}")
+	@GetMapping("/listCustomer/{cNumero}")
 	public Customer findCustomer(@PathVariable int cNumero) {
-		Customer newCustomer = cs.findCustomer(cNumero);
+		Customer newCustomer = customerService.findCustomer(cNumero);
 		return newCustomer;
 	}
 	
-	@PutMapping("/listeclient")
-	public Customer updateCustomer(@RequestBody Customer cli) {
-		cs.saveCustomer(cli);
-		return cli;
+	@PutMapping("/listCustomer")
+	public Customer updateCustomer(@RequestBody Customer customer) {
+		customerService.saveCustomer(customer);
+		return customer;
 	}
 	
-	 @DeleteMapping("/listecustomer/{cNumero}")
+	 @DeleteMapping("/listCustomer/{cNumero}")
 	 public void deleteCustomer(@PathVariable("cNumero") int id) {
-		cs.deleteCustomer(id);
+		customerService.deleteCustomer(id);
 	 }
 
 }
