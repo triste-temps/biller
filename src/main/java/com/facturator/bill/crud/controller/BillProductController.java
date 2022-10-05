@@ -16,39 +16,39 @@ import com.facturator.bill.crud.entity.BillProduct;
 import com.facturator.bill.crud.service.BillProductService;
 
 @RestController
-@RequestMapping("/facturation")
+@RequestMapping("/billing")
 public class BillProductController {
 
 	@Autowired
-	private BillProductService fps;
+	private BillProductService billProductService;
 	
-	@PostMapping("/factureProduit")
-	public BillProduct saveBillProduct(@RequestBody BillProduct fp) {
-		BillProduct newBillProduct = fps.saveBillProduct(fp);
+	@PostMapping("/billProduct")
+	public BillProduct saveBillProduct(@RequestBody BillProduct billProduct) {
+		BillProduct newBillProduct = billProductService.saveBillProduct(billProduct);
 		return newBillProduct;
 	}
 	
-	@GetMapping("/listeFactureProduit")
+	@GetMapping("/listBillProduct")
 	public List<BillProduct> allBillProduct(){
-		List<BillProduct> allBillProduct = fps.allBillProduct();
+		List<BillProduct> allBillProduct = billProductService.allBillProduct();
 		return allBillProduct;
 	}
 	
-	@GetMapping("/listeFactureProduit/{fcId}")
+	@GetMapping("/listBillProduct/{fcId}")
 	public BillProduct findBillProduct(@PathVariable int fcId) {
-	BillProduct newBillProduct = fps.findBillProduct(fcId);
+	BillProduct newBillProduct = billProductService.findBillProduct(fcId);
 	return newBillProduct;
 	}
 	
-	@PutMapping("/listeFactureProduit")
-	public BillProduct updateBillProduct(@RequestBody BillProduct fp) {
-		fps.saveBillProduct(fp);
-		return fp;
+	@PutMapping("/listBillProduct")
+	public BillProduct updateBillProduct(@RequestBody BillProduct billProduct) {
+		billProductService.saveBillProduct(billProduct);
+		return billProduct;
 	}
 	
-	@DeleteMapping("/listeFactureProduit/{cNumero}")
+	@DeleteMapping("/listBillProduct/{cNumero}")
 	public void deleteBillProduct(@PathVariable("fcId") int id) {
-		fps.deleteBillProduct(id);
+		billProductService.deleteBillProduct(id);
 	}
 	
 }

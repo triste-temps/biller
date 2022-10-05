@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.facturator.bill.crud.entity.Customer;
-import com.facturator.bill.crud.repository.ClientRepository;
+import com.facturator.bill.crud.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
 
 	@Autowired
-	private ClientRepository cr;
+	private CustomerRepository cr;
 	
 	@Transactional
 	public Customer saveCustomer(Customer cli) {

@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.facturator.bill.crud.entity.Facture;
+import com.facturator.bill.crud.entity.Bill;
 import com.facturator.bill.crud.repository.BillRepository;
 
 @Service
@@ -18,21 +18,21 @@ public class BillService {
 	private BillRepository fr;
 	
 	@Transactional
-	public Facture saveBill(Facture fac) {
+	public Bill saveBill(Bill fac) {
 		
-		Facture newBill = fr.save(fac);
+		Bill newBill = fr.save(fac);
 		return newBill;
 	}
 	
-	public List<Facture> allBill(){
-		List<Facture> allBill = fr.findAll();
+	public List<Bill> allBill(){
+		List<Bill> allBill = fr.findAll();
 		return allBill;
 	}
 	
-	public Facture findBill(int id) {
-		Optional<Facture> resultatId = fr.findById(id);
+	public Bill findBill(int id) {
+		Optional<Bill> resultatId = fr.findById(id);
 		
-		Facture testId = null;
+		Bill testId = null;
 		
 		if (resultatId.isPresent()) {
 			testId = resultatId.get();
@@ -44,7 +44,7 @@ public class BillService {
 		return testId;
 	}
 	
-	public void updateBill (Facture fac, int id) {
+	public void updateBill (Bill fac, int id) {
 		fr.save(fac);
 	}
 	

@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.facturator.bill.crud.entity.Facture;
+import com.facturator.bill.crud.entity.Bill;
 import com.facturator.bill.crud.service.BillService;
 
 @RestController
-@RequestMapping("/facturation")
+@RequestMapping("/billing")
 public class BillController {
 
 	@Autowired
-	private BillService fs;
+	private BillService billService;
 	
-	@PostMapping("/facture")
-	public Facture saveBill(@RequestBody Facture fac) {
-		Facture newBill = fs.saveBill(fac);
+	@PostMapping("/bill")
+	public Bill saveBill(@RequestBody Bill bill) {
+		Bill newBill = billService.saveBill(bill);
 		return newBill;
 	}
 	
-	@GetMapping("/listeFacture")
-	public List<Facture> allBill(){
-	List<Facture> listAllBill = fs.allBill();
+	@GetMapping("/listBill")
+	public List<Bill> allBill(){
+	List<Bill> listAllBill = billService.allBill();
 	return listAllBill;
 	}
 	
-	@GetMapping("/listeFacture/{fNumero}")
-	public Facture findBill(@PathVariable int fNumero) {
-		Facture newBill = fs.findBill(fNumero);
+	@GetMapping("/listBill/{fNumero}")
+	public Bill findBill(@PathVariable int fNumero) {
+		Bill newBill = billService.findBill(fNumero);
 		return newBill;
 	}
 	
-	@PutMapping("/listefacture")
-	public Facture updateBill(@RequestBody Facture fac) {
-		fs.saveBill(fac);
-		return fac;
+	@PutMapping("/listBill")
+	public Bill updateBill(@RequestBody Bill bill) {
+		billService.saveBill(bill);
+		return bill;
 	}
 	
-	@DeleteMapping("/listefacture/{fNumero}")
+	@DeleteMapping("/listBill/{fNumero}")
 	public void deleteBill(@PathVariable("fNumero") int id) {
-		fs.deleteBill(id);
+		billService.deleteBill(id);
 	}
 }
