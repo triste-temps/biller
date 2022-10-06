@@ -1,12 +1,15 @@
 package com.facturator.bill.crud.entity;
 
 import java.math.BigInteger;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +27,11 @@ public class Company {
 	@Column(name="ent_prenom")
 	private String ePrenom;
 	
-	@Column(name="ent_nom_entreprise")
-	private String eNomEntreprise;
+	@Column(name="ent_nom_utilisateur")
+	private String eNomUtilisateur;
+	
+	@Column(name="ent_mot_de_passe")
+	private String eMDP;
 	
 	@Column(name="ent_adresse")
 	private String eAdresse;
@@ -39,20 +45,26 @@ public class Company {
 	@Column(name="ent_telephone_fixe")
 	private String eTelephoneFixe;
 	
+	@OneToMany(mappedBy = "entreprise", cascade = CascadeType.ALL)
+	private List <CompanyRole> CompanyRole;
+	
 	public Company() {
 		
 	}
 
-	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eNomEntreprise, String eAdresse,
-			String eCodePostal, String eVille, String eTelephoneFixe) {
+	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eNomUtilisateur, String eMDP,
+			String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe,
+			List<com.facturator.bill.crud.entity.CompanyRole> companyRole) {
 		this.eNumeroSiret = eNumeroSiret;
 		this.eNom = eNom;
 		this.ePrenom = ePrenom;
-		this.eNomEntreprise = eNomEntreprise;
+		this.eNomUtilisateur = eNomUtilisateur;
+		this.eMDP = eMDP;
 		this.eAdresse = eAdresse;
 		this.eCodePostal = eCodePostal;
 		this.eVille = eVille;
 		this.eTelephoneFixe = eTelephoneFixe;
+		CompanyRole = companyRole;
 	}
 
 	public BigInteger geteNumeroSiret() {
@@ -79,12 +91,20 @@ public class Company {
 		this.ePrenom = ePrenom;
 	}
 
-	public String geteNomEntreprise() {
-		return eNomEntreprise;
+	public String geteNomUtilisateur() {
+		return eNomUtilisateur;
 	}
 
-	public void seteNomEntreprise(String eNomEntreprise) {
-		this.eNomEntreprise = eNomEntreprise;
+	public void seteNomUtilisateur(String eNomUtilisateur) {
+		this.eNomUtilisateur = eNomUtilisateur;
+	}
+
+	public String geteMDP() {
+		return eMDP;
+	}
+
+	public void seteMDP(String eMDP) {
+		this.eMDP = eMDP;
 	}
 
 	public String geteAdresse() {
@@ -119,11 +139,20 @@ public class Company {
 		this.eTelephoneFixe = eTelephoneFixe;
 	}
 
+	public List<CompanyRole> getCompanyRole() {
+		return CompanyRole;
+	}
+
+	public void setCompanyRole(List<CompanyRole> companyRole) {
+		CompanyRole = companyRole;
+	}
+
 	@Override
 	public String toString() {
-		return "Entreprise [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom
-				+ ", eNomEntreprise=" + eNomEntreprise + ", eAdresse=" + eAdresse + ", eCodePostal=" + eCodePostal
-				+ ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe + "]";
+		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom
+				+ ", eNomUtilisateur=" + eNomUtilisateur + ", eMDP=" + eMDP + ", eAdresse=" + eAdresse
+				+ ", eCodePostal=" + eCodePostal + ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe
+				+ ", CompanyRole=" + CompanyRole + "]";
 	}
-	
+
 }
