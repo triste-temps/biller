@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +20,11 @@ public class CompanyRole {
 	@Column(name="er_id")
 	private int erId;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@Column(name="ent_numero_siret")
 	private BigInteger erNumeroSiret;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@Column(name="rol_id")
 	private int erNumero;
 	
