@@ -1,10 +1,14 @@
 package com.facturator.bill.crud.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,16 +32,21 @@ public class Product {
 	@Column(name="pro_remarque")
 	private String pRemarque;
 	
+	@OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+	private List <BillProduct> billProducts;
+	
 	public Product() {
 		
 	}
 
-	public Product(int pReference, String pDescription, Double pPrixHT, Double pTauxTVA, String pRemarque) {
+	public Product(int pReference, String pDescription, Double pPrixHT, Double pTauxTVA, String pRemarque,
+			List<BillProduct> billProducts) {
 		this.pReference = pReference;
 		this.pDescription = pDescription;
 		this.pPrixHT = pPrixHT;
 		this.pTauxTVA = pTauxTVA;
 		this.pRemarque = pRemarque;
+		this.billProducts = billProducts;
 	}
 
 	public int getpReference() {
@@ -80,10 +89,18 @@ public class Product {
 		this.pRemarque = pRemarque;
 	}
 
+	public List<BillProduct> getBillProducts() {
+		return billProducts;
+	}
+
+	public void setBillProducts(List<BillProduct> billProducts) {
+		this.billProducts = billProducts;
+	}
+
 	@Override
 	public String toString() {
-		return "Produit [pReference=" + pReference + ", pDescription=" + pDescription + ", pPrixHT=" + pPrixHT
-				+ ", pTauxTVA=" + pTauxTVA + ", pRemarque=" + pRemarque + "]";
+		return "Product [pReference=" + pReference + ", pDescription=" + pDescription + ", pPrixHT=" + pPrixHT
+				+ ", pTauxTVA=" + pTauxTVA + ", pRemarque=" + pRemarque + ", billProducts=" + billProducts + "]";
 	}
 	
 }

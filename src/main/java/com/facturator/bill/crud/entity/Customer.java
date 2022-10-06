@@ -1,10 +1,14 @@
 package com.facturator.bill.crud.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -43,12 +47,16 @@ public class Customer {
 	@Column(name="cli_email")
 	private String cEmail;
 	
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private List <Bill> bills;
+	
 	public Customer() {
 		
 	}
 
 	public Customer(int cNumero, String cType, String cNomPrenomRaisonSociale, String cAdresse, String cCodePostal,
-			String cVille, String cTelephoneMobile, String cTelephoneFixe, String cSiteInternet, String cEmail) {
+			String cVille, String cTelephoneMobile, String cTelephoneFixe, String cSiteInternet, String cEmail,
+			List<Bill> bills) {
 		this.cNumero = cNumero;
 		this.cType = cType;
 		this.cNomPrenomRaisonSociale = cNomPrenomRaisonSociale;
@@ -59,6 +67,7 @@ public class Customer {
 		this.cTelephoneFixe = cTelephoneFixe;
 		this.cSiteInternet = cSiteInternet;
 		this.cEmail = cEmail;
+		this.bills = bills;
 	}
 
 	public int getcNumero() {
@@ -141,12 +150,20 @@ public class Customer {
 		this.cEmail = cEmail;
 	}
 
-	@Override
-	public String toString() {
-		return "Client [cNumero=" + cNumero + ", cType=" + cType + ", cNomPrenomRaisonSociale="
-				+ cNomPrenomRaisonSociale + ", cAdresse=" + cAdresse + ", cCodePostal=" + cCodePostal + ", cVille="
-				+ cVille + ", cTelephoneMobile=" + cTelephoneMobile + ", cTelephoneFixe=" + cTelephoneFixe
-				+ ", cSiteInternet=" + cSiteInternet + ", cEmail=" + cEmail + "]";
+	public List<Bill> getBills() {
+		return bills;
 	}
 
+	public void setBills(List<Bill> bills) {
+		this.bills = bills;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [cNumero=" + cNumero + ", cType=" + cType + ", cNomPrenomRaisonSociale="
+				+ cNomPrenomRaisonSociale + ", cAdresse=" + cAdresse + ", cCodePostal=" + cCodePostal + ", cVille="
+				+ cVille + ", cTelephoneMobile=" + cTelephoneMobile + ", cTelephoneFixe=" + cTelephoneFixe
+				+ ", cSiteInternet=" + cSiteInternet + ", cEmail=" + cEmail + ", bills=" + bills + "]";
+	}
+	
 }

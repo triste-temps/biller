@@ -1,6 +1,7 @@
 package com.facturator.bill.crud.entity;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,11 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="facture")	
-public class Facture {
+public class Bill {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,12 +48,16 @@ public class Facture {
 	@JoinColumn(name="cli_numero")
 	private Customer fk_cNumero;
 	
-	public Facture() {
+	@OneToMany(mappedBy = "facture", cascade = CascadeType.ALL)
+	private List <BillProduct> billProducts;
+	
+	public Bill() {
 		
 	}
 
-	public Facture(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
-			String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero) {
+	public Bill(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
+			String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero,
+			List<BillProduct> billProducts) {
 		this.fNumero = fNumero;
 		this.fBonDeCommande = fBonDeCommande;
 		this.fDateFacture = fDateFacture;
@@ -61,6 +67,7 @@ public class Facture {
 		this.fPourcentageRemise = fPourcentageRemise;
 		this.fTVA = fTVA;
 		this.fk_cNumero = fk_cNumero;
+		this.billProducts = billProducts;
 	}
 
 	public int getfNumero() {
@@ -135,11 +142,20 @@ public class Facture {
 		this.fk_cNumero = fk_cNumero;
 	}
 
+	public List<BillProduct> getBillProducts() {
+		return billProducts;
+	}
+
+	public void setBillProducts(List<BillProduct> billProducts) {
+		this.billProducts = billProducts;
+	}
+
 	@Override
 	public String toString() {
-		return "Facture [fNumero=" + fNumero + ", fBonDeCommande=" + fBonDeCommande + ", fDateFacture=" + fDateFacture
+		return "Bill [fNumero=" + fNumero + ", fBonDeCommande=" + fBonDeCommande + ", fDateFacture=" + fDateFacture
 				+ ", fDateEcheance=" + fDateEcheance + ", fPaiementRecu=" + fPaiementRecu + ", fReglement=" + fReglement
-				+ ", fPourcentageRemise=" + fPourcentageRemise + ", fTVA=" + fTVA + ", fk_cNumero=" + fk_cNumero + "]";
+				+ ", fPourcentageRemise=" + fPourcentageRemise + ", fTVA=" + fTVA + ", fk_cNumero=" + fk_cNumero
+				+ ", billProducts=" + billProducts + "]";
 	}
 
 }
