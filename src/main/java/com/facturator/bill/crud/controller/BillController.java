@@ -22,12 +22,13 @@ public class BillController {
 	@Autowired
 	private BillService billService;
 	
+	// ajouter
 	@PostMapping("/bill")
 	public Bill saveBill(@RequestBody Bill bill) {
 		Bill newBill = billService.saveBill(bill);
 		return newBill;
 	}
-	
+	// obtenir
 	@GetMapping("/listBill")
 	public List<Bill> allBill(){
 	List<Bill> listAllBill = billService.allBill();

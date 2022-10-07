@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,18 +22,18 @@ public class CompanyRole {
 	private int erId;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@Column(name="ent_numero_siret")
-	private BigInteger erNumeroSiret;
+	@JoinColumn(name="ent_numero_siret")
+	private Company erNumeroSiret;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@Column(name="rol_id")
-	private int erNumero;
+	@JoinColumn(name="rol_id")
+	private Role erNumero;
 	
 	public CompanyRole() {
 		
 	}
 
-	public CompanyRole(int erId, BigInteger erNumeroSiret, int erNumero) {
+	public CompanyRole(int erId, Company erNumeroSiret, Role erNumero) {
 		this.erId = erId;
 		this.erNumeroSiret = erNumeroSiret;
 		this.erNumero = erNumero;
@@ -46,19 +47,19 @@ public class CompanyRole {
 		this.erId = erId;
 	}
 
-	public BigInteger getErNumeroSiret() {
+	public Company getErNumeroSiret() {
 		return erNumeroSiret;
 	}
 
-	public void setErNumeroSiret(BigInteger erNumeroSiret) {
+	public void setErNumeroSiret(Company erNumeroSiret) {
 		this.erNumeroSiret = erNumeroSiret;
 	}
 
-	public int getErNumero() {
+	public Role getErNumero() {
 		return erNumero;
 	}
 
-	public void setErNumero(int erNumero) {
+	public void setErNumero(Role erNumero) {
 		this.erNumero = erNumero;
 	}
 

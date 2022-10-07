@@ -32,7 +32,7 @@ public class Product {
 	@Column(name="pro_remarque")
 	private String pRemarque;
 	
-	@OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL)
 	private List <BillProduct> billProducts;
 	
 	public Product() {

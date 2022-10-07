@@ -19,26 +19,27 @@ public class BillProduct {
 	@JoinColumn(name="fc_id")
 	private int fcId;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="fac_numero")
-	private Bill fcNumero;
-
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="pro_reference")
-	private Product fcReference;
-	
 	@Column(name="fc_quantite")
 	private Double fcQuantite;
+		
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="pro_reference")
+	private Bill fcReference;
+	
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="fac_numero")
+	private Product fcNumero;
 	
 	public BillProduct() {
 		
 	}
 
-	public BillProduct(int fcId, Bill fcNumero, Product fcReference, Double fcQuantite) {
+	public BillProduct(int fcId, Double fcQuantite, Product fcNumero, Bill fcReference) {
 		this.fcId = fcId;
+		this.fcQuantite = fcQuantite;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
-		this.fcQuantite = fcQuantite;
 	}
 
 	public int getFcId() {
@@ -49,22 +50,6 @@ public class BillProduct {
 		this.fcId = fcId;
 	}
 
-	public Bill getFcNumero() {
-		return fcNumero;
-	}
-
-	public void setFcNumero(Bill fcNumero) {
-		this.fcNumero = fcNumero;
-	}
-
-	public Product getFcReference() {
-		return fcReference;
-	}
-
-	public void setFcReference(Product fcReference) {
-		this.fcReference = fcReference;
-	}
-
 	public Double getFcQuantite() {
 		return fcQuantite;
 	}
@@ -73,10 +58,26 @@ public class BillProduct {
 		this.fcQuantite = fcQuantite;
 	}
 
+	public Product getFcNumero() {
+		return fcNumero;
+	}
+
+	public void setFcNumero(Product fcNumero) {
+		this.fcNumero = fcNumero;
+	}
+
+	public Bill getFcReference() {
+		return fcReference;
+	}
+
+	public void setFcReference(Bill fcReference) {
+		this.fcReference = fcReference;
+	}
+
 	@Override
 	public String toString() {
-		return "FactureProduit [fcId=" + fcId + ", fcNumero=" + fcNumero + ", fcReference=" + fcReference
-				+ ", fcQuantite=" + fcQuantite + "]";
+		return "BillProduct [fcId=" + fcId + ", fcQuantite=" + fcQuantite + ", fcNumero=" + fcNumero + ", fcReference="
+				+ fcReference + "]";
 	}
 
 	

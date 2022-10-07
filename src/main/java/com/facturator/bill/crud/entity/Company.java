@@ -45,16 +45,15 @@ public class Company {
 	@Column(name="ent_telephone_fixe")
 	private String eTelephoneFixe;
 	
-	@OneToMany(mappedBy = "entreprise", cascade = CascadeType.ALL)
-	private List <CompanyRole> CompanyRole;
+	@OneToMany(mappedBy = "erNumeroSiret", cascade = CascadeType.ALL)
+	private List <CompanyRole> companyRoles;
 	
 	public Company() {
 		
 	}
 
 	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eNomUtilisateur, String eMDP,
-			String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe,
-			List<com.facturator.bill.crud.entity.CompanyRole> companyRole) {
+			String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe, List<CompanyRole> companyRoles) {
 		this.eNumeroSiret = eNumeroSiret;
 		this.eNom = eNom;
 		this.ePrenom = ePrenom;
@@ -64,7 +63,7 @@ public class Company {
 		this.eCodePostal = eCodePostal;
 		this.eVille = eVille;
 		this.eTelephoneFixe = eTelephoneFixe;
-		CompanyRole = companyRole;
+		this.companyRoles = companyRoles;
 	}
 
 	public BigInteger geteNumeroSiret() {
@@ -139,12 +138,12 @@ public class Company {
 		this.eTelephoneFixe = eTelephoneFixe;
 	}
 
-	public List<CompanyRole> getCompanyRole() {
-		return CompanyRole;
+	public List<CompanyRole> getCompanyRoles() {
+		return companyRoles;
 	}
 
-	public void setCompanyRole(List<CompanyRole> companyRole) {
-		CompanyRole = companyRole;
+	public void setCompanyRoles(List<CompanyRole> companyRoles) {
+		this.companyRoles = companyRoles;
 	}
 
 	@Override
@@ -152,7 +151,7 @@ public class Company {
 		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom
 				+ ", eNomUtilisateur=" + eNomUtilisateur + ", eMDP=" + eMDP + ", eAdresse=" + eAdresse
 				+ ", eCodePostal=" + eCodePostal + ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe
-				+ ", CompanyRole=" + CompanyRole + "]";
+				+ ", companyRoles=" + companyRoles + "]";
 	}
 
 }
