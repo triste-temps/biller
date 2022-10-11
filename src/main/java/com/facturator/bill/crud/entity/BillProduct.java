@@ -14,9 +14,9 @@ import javax.persistence.Table;
 @Table(name="facture_produit")	
 public class BillProduct {
 	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id	
-	@JoinColumn(name="fc_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="fc_id")
 	private int fcId;
 	
 	@Column(name="fc_quantite")
@@ -24,18 +24,18 @@ public class BillProduct {
 		
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="pro_reference")
-	private Bill fcReference;
+	private Bill fcNumero;
 	
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="fac_numero")
-	private Product fcNumero;
+	private Product fcReference;
 	
 	public BillProduct() {
 		
 	}
 
-	public BillProduct(int fcId, Double fcQuantite, Product fcNumero, Bill fcReference) {
+	public BillProduct(int fcId, Double fcQuantite, Bill fcNumero, Product fcReference) {
 		this.fcId = fcId;
 		this.fcQuantite = fcQuantite;
 		this.fcNumero = fcNumero;
@@ -58,19 +58,19 @@ public class BillProduct {
 		this.fcQuantite = fcQuantite;
 	}
 
-	public Product getFcNumero() {
+	public Bill getFcNumero() {
 		return fcNumero;
 	}
 
-	public void setFcNumero(Product fcNumero) {
+	public void setFcNumero(Bill fcNumero) {
 		this.fcNumero = fcNumero;
 	}
 
-	public Bill getFcReference() {
+	public Product getFcReference() {
 		return fcReference;
 	}
 
-	public void setFcReference(Bill fcReference) {
+	public void setFcReference(Product fcReference) {
 		this.fcReference = fcReference;
 	}
 
@@ -79,6 +79,5 @@ public class BillProduct {
 		return "BillProduct [fcId=" + fcId + ", fcQuantite=" + fcQuantite + ", fcNumero=" + fcNumero + ", fcReference="
 				+ fcReference + "]";
 	}
-
 	
 }

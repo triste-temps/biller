@@ -46,7 +46,7 @@ public class BillProductController {
 		return billProduct;
 	}
 	
-	@DeleteMapping("/listBillProduct/{cNumero}")
+	@DeleteMapping("/listBillProduct/{fcId}")
 	public void deleteBillProduct(@PathVariable("fcId") int id) {
 		billProductService.deleteBillProduct(id);
 	}

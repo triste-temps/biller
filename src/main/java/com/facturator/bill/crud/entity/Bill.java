@@ -1,6 +1,6 @@
 package com.facturator.bill.crud.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -49,7 +49,7 @@ public class Bill {
 	@JoinColumn(name="cli_numero")
 	private Customer fk_cNumero;
 	
-	@OneToMany(mappedBy = "fcReference", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL)
 	private List <BillProduct> billProducts;
 	
 	public Bill() {

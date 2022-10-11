@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Product {
 	@Column(name="pro_remarque")
 	private String pRemarque;
 	
-	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "fcReference", cascade = CascadeType.ALL)
 	private List <BillProduct> billProducts;
 	
 	public Product() {
