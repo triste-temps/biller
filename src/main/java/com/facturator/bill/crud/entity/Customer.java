@@ -1,5 +1,6 @@
 package com.facturator.bill.crud.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -48,7 +49,7 @@ public class Customer {
 	@Column(name="cli_email")
 	private String cEmail;
 	
-	@OneToMany(mappedBy = "fk_cNumero", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "fk_cNumero", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <Bill> bills;
 	
 	public Customer() {
@@ -56,8 +57,7 @@ public class Customer {
 	}
 
 	public Customer(int cNumero, String cType, String cNomPrenomRaisonSociale, String cAdresse, String cCodePostal,
-			String cVille, String cTelephoneMobile, String cTelephoneFixe, String cSiteInternet, String cEmail,
-			List<Bill> bills) {
+			String cVille, String cTelephoneMobile, String cTelephoneFixe, String cSiteInternet, String cEmail) {
 		this.cNumero = cNumero;
 		this.cType = cType;
 		this.cNomPrenomRaisonSociale = cNomPrenomRaisonSociale;
@@ -68,8 +68,18 @@ public class Customer {
 		this.cTelephoneFixe = cTelephoneFixe;
 		this.cSiteInternet = cSiteInternet;
 		this.cEmail = cEmail;
-		this.bills = bills;
 	}
+	
+	public void addBill(Bill bill) {
+		if (bills==null) {
+			bills = new ArrayList<>();
+		}
+		
+		bill.setFk_cNumero(this);
+		this.bills.add(bill);
+		
+	}
+	
 
 	public int getcNumero() {
 		return cNumero;
@@ -166,5 +176,5 @@ public class Customer {
 				+ cVille + ", cTelephoneMobile=" + cTelephoneMobile + ", cTelephoneFixe=" + cTelephoneFixe
 				+ ", cSiteInternet=" + cSiteInternet + ", cEmail=" + cEmail + ", bills=" + bills + "]";
 	}
-	
+
 }

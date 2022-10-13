@@ -22,12 +22,12 @@ public class BillProduct {
 	@Column(name="fc_quantite")
 	private Double fcQuantite;
 		
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pro_reference")
 	private Bill fcNumero;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="fac_numero")
 	private Product fcReference;
 	

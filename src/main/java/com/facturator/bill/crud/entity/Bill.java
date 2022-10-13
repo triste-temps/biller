@@ -45,11 +45,11 @@ public class Bill {
 	@Column(name="fac_tva")
 	private Double fTVA;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cli_numero")
 	private Customer fk_cNumero;
 	
-	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <BillProduct> billProducts;
 	
 	public Bill() {
@@ -57,8 +57,7 @@ public class Bill {
 	}
 
 	public Bill(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
-			String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero,
-			List<BillProduct> billProducts) {
+			String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero) {
 		this.fNumero = fNumero;
 		this.fBonDeCommande = fBonDeCommande;
 		this.fDateFacture = fDateFacture;
@@ -68,7 +67,6 @@ public class Bill {
 		this.fPourcentageRemise = fPourcentageRemise;
 		this.fTVA = fTVA;
 		this.fk_cNumero = fk_cNumero;
-		this.billProducts = billProducts;
 	}
 
 	public int getfNumero() {

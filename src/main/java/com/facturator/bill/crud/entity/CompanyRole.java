@@ -21,11 +21,11 @@ public class CompanyRole {
 	@Column(name="er_id")
 	private int erId;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ent_numero_siret")
 	private Company erNumeroSiret;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="rol_id")
 	private Role erNumero;
 	
