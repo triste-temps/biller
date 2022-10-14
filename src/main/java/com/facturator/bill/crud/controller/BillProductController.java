@@ -22,33 +22,43 @@ public class BillProductController {
 	@Autowired
 	private BillProductService billProductService;
 	
-	@PostMapping("/billProduct")
-	public BillProduct saveBillProduct(@RequestBody BillProduct billProduct) {
-		BillProduct newBillProduct = billProductService.saveBillProduct(billProduct);
-		return newBillProduct;
-	}
+//	@PostMapping("/billProduct")
+//	public BillProduct saveBillProduct(@RequestBody BillProduct billProduct) {
+//		BillProduct newBillProduct = billProductService.saveBillProduct(billProduct);
+//		return newBillProduct;
+//	}
+//	
+//	@GetMapping("/listBillProduct")
+//	public List<BillProduct> allBillProduct(){
+//		List<BillProduct> allBillProduct = billProductService.allBillProduct();
+//		return allBillProduct;
+//	}
+//	
+//	@GetMapping("/listBillProduct/{fcId}")
+//	public BillProduct findBillProduct(@PathVariable int fcId) {
+//	BillProduct newBillProduct = billProductService.findBillProduct(fcId);
+//	return newBillProduct;
+//	}
+//	
+//	@PutMapping("/listBillProduct")
+//	public BillProduct updateBillProduct(@RequestBody BillProduct billProduct) {
+//		billProductService.saveBillProduct(billProduct);
+//		return billProduct;
+//	}
+//	
+//	@DeleteMapping("/listBillProduct/{fcId}")
+//	public void deleteBillProduct(@PathVariable("fcId") int id) {
+//		billProductService.deleteBillProduct(id);
+//	}
 	
 	@GetMapping("/listBillProduct")
 	public List<BillProduct> allBillProduct(){
-		List<BillProduct> allBillProduct = billProductService.allBillProduct();
-		return allBillProduct;
+		return billProductService.allBillProduct();
 	}
 	
 	@GetMapping("/listBillProduct/{fcId}")
 	public BillProduct findBillProduct(@PathVariable int fcId) {
-	BillProduct newBillProduct = billProductService.findBillProduct(fcId);
-	return newBillProduct;
-	}
-	
-	@PutMapping("/listBillProduct")
-	public BillProduct updateBillProduct(@RequestBody BillProduct billProduct) {
-		billProductService.saveBillProduct(billProduct);
-		return billProduct;
-	}
-	
-	@DeleteMapping("/listBillProduct/{fcId}")
-	public void deleteBillProduct(@PathVariable("fcId") int id) {
-		billProductService.deleteBillProduct(id);
+		return billProductService.findBillProduct(fcId);
 	}
 	
 }

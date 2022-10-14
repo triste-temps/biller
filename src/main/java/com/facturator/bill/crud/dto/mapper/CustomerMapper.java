@@ -41,7 +41,7 @@ public class CustomerMapper {
 	}
 	
 	
-	private static CustomerDTO toDtoWithBill(Customer cust) {
+	public static CustomerDTO toDtoWithBill(Customer cust) {
 		CustomerDTO custDTO = null;
 		
 		if(cust!=null) {

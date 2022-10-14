@@ -37,7 +37,7 @@ public class ProductMapper {
 		return prods;
 	}
 
-	private static ProductDTO toDtoWithBillProduct(Product prod) {
+	public static ProductDTO toDtoWithBillProduct(Product prod) {
 		ProductDTO prodDTO = null;
 		
 		if(prod!=null) {

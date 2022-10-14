@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.facturator.bill.crud.dto.CustomerDTO;
+import com.facturator.bill.crud.dto.mapper.CustomerMapper;
 import com.facturator.bill.crud.entity.Customer;
 import com.facturator.bill.crud.service.CustomerService;
 
@@ -23,26 +25,26 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/customer")
-	public Customer saveCustomer(@RequestBody Customer customer) {
-		Customer newCustomer = customerService.saveCustomer(customer);
-		return newCustomer;
+	public CustomerDTO saveCustomer(@RequestBody CustomerDTO customer) {
+		return CustomerMapper.toDtoWithBill(customerService.saveCustomer(CustomerMapper.toEntity(customer)));
 	}
 	
 	@GetMapping("/listCustomer")
-	public List<Customer> allCustomer(){
-		List<Customer> listAllCustomer = customerService.allCustomer();
-		return listAllCustomer;
+	public List<CustomerDTO> allCustomer(){
+		return CustomerMapper.toDtoListWithBill(customerService.allCustomer());
 	}
 	
 	@GetMapping("/listCustomer/{cNumero}")
-	public Customer findCustomer(@PathVariable int cNumero) {
-		Customer newCustomer = customerService.findCustomer(cNumero);
+	public CustomerDTO findCustomer(@PathVariable int cNumero) {
+		CustomerDTO newCustomer = CustomerMapper.toDtoWithBill(customerService.findCustomer(cNumero));
 		return newCustomer;
 	}
 	
 	@PutMapping("/listCustomer")
-	public Customer updateCustomer(@RequestBody Customer customer) {
-		customerService.saveCustomer(customer);
+	public CustomerDTO updateCustomer(@RequestBody CustomerDTO customer) {
+		if(customer.getcNumero()!=0) {
+			return saveCustomer(customer);
+		}
 		return customer;
 	}
 	

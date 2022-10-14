@@ -34,7 +34,7 @@ public class BillMapper {
 		return bills;
 	}
 	
-	private static BillDTO toDtoWithBillProduct(Bill bill) {
+	public static BillDTO toDtoWithBillProduct(Bill bill) {
 		BillDTO billDTO = null;
 		
 		if(bill!=null) {
