@@ -1,5 +1,6 @@
 package com.facturator.bill.crud.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,6 +68,15 @@ public class Bill {
 		this.fPourcentageRemise = fPourcentageRemise;
 		this.fTVA = fTVA;
 		this.fk_cNumero = fk_cNumero;
+	}
+	
+	public void addBillProduct(BillProduct billProduct) {
+		if (billProducts==null) {
+			billProducts = new ArrayList<>();
+		}
+		
+		 billProduct.setFcNumero(this);
+		 this.billProducts.add(billProduct);
 	}
 
 	public int getfNumero() {
