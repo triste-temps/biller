@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.facturator.bill.crud.dto.BillDTO;
-import com.facturator.bill.crud.dto.BillProductDTO;
 import com.facturator.bill.crud.entity.Bill;
-import com.facturator.bill.crud.entity.BillProduct;
 
 public class BillMapper {
 
@@ -14,7 +12,7 @@ public class BillMapper {
 		BillDTO dto = null;
 		
 		if (bill!=null) {
-			dto = new BillDTO(bill.getfNumero(),bill.getfBonDeCommande(),bill.getfDateEcheance(),bill.getfDateEcheance(),bill.getfPaiementRecu(),bill.getfReglement(),bill.getfPourcentageRemise(),bill.getfTVA(), CustomerMapper.toDto(bill.getFk_cNumero())); 
+			dto = new BillDTO(bill.getfNumero(),bill.getfBonDeCommande(),bill.getfDateEcheance(),bill.getfDateEcheance(),bill.getfPaiementRecu(), bill.getfQuantiteProduit(),bill.getfReglement(),bill.getfPourcentageRemise(),bill.getfTVA(), CustomerMapper.toDto(bill.getFk_cNumero())); 
 		}
 		
 		return dto;
@@ -65,7 +63,7 @@ public class BillMapper {
 		Bill bill = null;
 		
 		if(dto!=null) {
-			bill = new Bill(dto.getfNumero(),dto.getfBonDeCommande(),dto.getfDateEcheance(),dto.getfDateEcheance(),dto.getfPaiementRecu(),dto.getfReglement(),dto.getfPourcentageRemise(),dto.getfTVA(), CustomerMapper.toEntity(dto.getFk_cNumero())); 
+			bill = new Bill(dto.getfNumero(),dto.getfBonDeCommande(),dto.getfDateEcheance(),dto.getfDateEcheance(),dto.getfPaiementRecu(),dto.getfQuantiteProduit(),dto.getfReglement(),dto.getfPourcentageRemise(),dto.getfTVA(), CustomerMapper.toEntity(dto.getFk_cNumero())); 
 		}
 		
 		return bill;

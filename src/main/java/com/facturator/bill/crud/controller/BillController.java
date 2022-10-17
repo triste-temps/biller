@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.facturator.bill.crud.dto.BillDTO;
 import com.facturator.bill.crud.dto.mapper.BillMapper;
-import com.facturator.bill.crud.entity.Bill;
 import com.facturator.bill.crud.service.BillService;
 
 @RestController

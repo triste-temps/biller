@@ -12,7 +12,7 @@ public class BillProductMapper {
 		BillProductDTO dto = null;
 		
 		if (bp!=null) {
-			dto = new BillProductDTO(bp.getFcId(), bp.getFcQuantite(), BillMapper.toDto(bp.getFcNumero()), ProductMapper.toDto(bp.getFcReference()));
+			dto = new BillProductDTO(bp.getFcId(), BillMapper.toDto(bp.getFcNumero()), ProductMapper.toDto(bp.getFcReference()));
 		}
 		
 		return dto;
@@ -35,7 +35,7 @@ public class BillProductMapper {
 		BillProduct bp = null;
 		
 		if (dto!=null) {
-			bp = new BillProduct(dto.getFcId(), dto.getFcQuantite(), BillMapper.toEntity(dto.getFcNumero()), ProductMapper.toEntity(dto.getFcReference()));
+			bp = new BillProduct(dto.getFcId(), BillMapper.toEntity(dto.getFcNumero()), ProductMapper.toEntity(dto.getFcReference()));
 		}
 		
 		return bp;

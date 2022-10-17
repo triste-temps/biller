@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class BillProductDTO {
 
 	private int fcId;
-	private Double fcQuantite;
 	private BillDTO fcNumero;
 	private ProductDTO fcReference;
 	
@@ -14,9 +13,8 @@ public class BillProductDTO {
 		
 	}
 
-	public BillProductDTO(int fcId, Double fcQuantite, BillDTO fcNumero, ProductDTO fcReference) {
+	public BillProductDTO(int fcId, BillDTO fcNumero, ProductDTO fcReference) {
 		this.fcId = fcId;
-		this.fcQuantite = fcQuantite;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
 	}
@@ -27,14 +25,6 @@ public class BillProductDTO {
 
 	public void setFcId(int fcId) {
 		this.fcId = fcId;
-	}
-
-	public Double getFcQuantite() {
-		return fcQuantite;
-	}
-
-	public void setFcQuantite(Double fcQuantite) {
-		this.fcQuantite = fcQuantite;
 	}
 
 	public BillDTO getFcNumero() {

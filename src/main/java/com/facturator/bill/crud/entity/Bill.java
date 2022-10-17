@@ -1,6 +1,5 @@
 package com.facturator.bill.crud.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +36,9 @@ public class Bill {
 	@Column(name="fac_paiement_recu")
 	private Date fPaiementRecu;
 	
+	@Column(name="fac_quantite_produit")
+	private Double fQuantiteProduit;
+	
 	@Column(name="fac_reglement")
 	private String fReglement;
 	
@@ -58,25 +60,17 @@ public class Bill {
 	}
 
 	public Bill(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
-			String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero) {
+			Double fQuantiteProduit, String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero) {
 		this.fNumero = fNumero;
 		this.fBonDeCommande = fBonDeCommande;
 		this.fDateFacture = fDateFacture;
 		this.fDateEcheance = fDateEcheance;
 		this.fPaiementRecu = fPaiementRecu;
+		this.fQuantiteProduit = fQuantiteProduit;
 		this.fReglement = fReglement;
 		this.fPourcentageRemise = fPourcentageRemise;
 		this.fTVA = fTVA;
 		this.fk_cNumero = fk_cNumero;
-	}
-	
-	public void addBillProduct(BillProduct billProduct) {
-		if (billProducts==null) {
-			billProducts = new ArrayList<>();
-		}
-		
-		 billProduct.setFcNumero(this);
-		 this.billProducts.add(billProduct);
 	}
 
 	public int getfNumero() {
@@ -117,6 +111,14 @@ public class Bill {
 
 	public void setfPaiementRecu(Date fPaiementRecu) {
 		this.fPaiementRecu = fPaiementRecu;
+	}
+
+	public Double getfQuantiteProduit() {
+		return fQuantiteProduit;
+	}
+
+	public void setfQuantiteProduit(Double fQuantiteProduit) {
+		this.fQuantiteProduit = fQuantiteProduit;
 	}
 
 	public String getfReglement() {
@@ -162,9 +164,9 @@ public class Bill {
 	@Override
 	public String toString() {
 		return "Bill [fNumero=" + fNumero + ", fBonDeCommande=" + fBonDeCommande + ", fDateFacture=" + fDateFacture
-				+ ", fDateEcheance=" + fDateEcheance + ", fPaiementRecu=" + fPaiementRecu + ", fReglement=" + fReglement
-				+ ", fPourcentageRemise=" + fPourcentageRemise + ", fTVA=" + fTVA + ", fk_cNumero=" + fk_cNumero
-				+ ", billProducts=" + billProducts + "]";
+				+ ", fDateEcheance=" + fDateEcheance + ", fPaiementRecu=" + fPaiementRecu + ", fQuantiteProduit="
+				+ fQuantiteProduit + ", fReglement=" + fReglement + ", fPourcentageRemise=" + fPourcentageRemise
+				+ ", fTVA=" + fTVA + ", fk_cNumero=" + fk_cNumero + ", billProducts=" + billProducts + "]";
 	}
 
 }

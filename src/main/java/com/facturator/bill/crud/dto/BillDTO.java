@@ -13,23 +13,26 @@ public class BillDTO {
 	private Date fDateFacture;
 	private Date fDateEcheance;
 	private Date fPaiementRecu;
+	private Double fQuantiteProduit;
 	private String fReglement;
 	private Double fPourcentageRemise;
 	private Double fTVA;
 	private CustomerDTO fk_cNumero;
 	private List <BillProductDTO> billProducts;
 	
-	public BillDTO() {
+	BillDTO(){
 		
 	}
 
 	public BillDTO(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
-			String fReglement, Double fPourcentageRemise, Double fTVA, CustomerDTO fk_cNumero) {
+			Double fQuantiteProduit, String fReglement, Double fPourcentageRemise, Double fTVA,
+			CustomerDTO fk_cNumero) {
 		this.fNumero = fNumero;
 		this.fBonDeCommande = fBonDeCommande;
 		this.fDateFacture = fDateFacture;
 		this.fDateEcheance = fDateEcheance;
 		this.fPaiementRecu = fPaiementRecu;
+		this.fQuantiteProduit = fQuantiteProduit;
 		this.fReglement = fReglement;
 		this.fPourcentageRemise = fPourcentageRemise;
 		this.fTVA = fTVA;
@@ -76,6 +79,14 @@ public class BillDTO {
 		this.fPaiementRecu = fPaiementRecu;
 	}
 
+	public Double getfQuantiteProduit() {
+		return fQuantiteProduit;
+	}
+
+	public void setfQuantiteProduit(Double fQuantiteProduit) {
+		this.fQuantiteProduit = fQuantiteProduit;
+	}
+
 	public String getfReglement() {
 		return fReglement;
 	}
@@ -115,5 +126,5 @@ public class BillDTO {
 	public void setBillProducts(List<BillProductDTO> billProducts) {
 		this.billProducts = billProducts;
 	}
-	
+
 }

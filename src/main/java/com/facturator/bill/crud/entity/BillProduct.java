@@ -18,9 +18,6 @@ public class BillProduct {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="fc_id")
 	private int fcId;
-	
-	@Column(name="fc_quantite")
-	private Double fcQuantite;
 		
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pro_reference")
@@ -35,9 +32,8 @@ public class BillProduct {
 		
 	}
 
-	public BillProduct(int fcId, Double fcQuantite, Bill fcNumero, Product fcReference) {
+	public BillProduct(int fcId, Bill fcNumero, Product fcReference) {
 		this.fcId = fcId;
-		this.fcQuantite = fcQuantite;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
 	}
@@ -48,14 +44,6 @@ public class BillProduct {
 
 	public void setFcId(int fcId) {
 		this.fcId = fcId;
-	}
-
-	public Double getFcQuantite() {
-		return fcQuantite;
-	}
-
-	public void setFcQuantite(Double fcQuantite) {
-		this.fcQuantite = fcQuantite;
 	}
 
 	public Bill getFcNumero() {
@@ -76,8 +64,7 @@ public class BillProduct {
 
 	@Override
 	public String toString() {
-		return "BillProduct [fcId=" + fcId + ", fcQuantite=" + fcQuantite + ", fcNumero=" + fcNumero + ", fcReference="
-				+ fcReference + "]";
+		return "BillProduct [fcId=" + fcId + ", fcNumero=" + fcNumero + ", fcReference=" + fcReference + "]";
 	}
 	
 }
