@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +28,9 @@ public class Company {
 	@Column(name="ent_prenom")
 	private String ePrenom;
 	
+	@Column(name="ent_email_utilisateur")
+	private String eEmail;
+	
 	@Column(name="ent_nom_utilisateur")
 	private String eNomUtilisateur;
 	
@@ -45,18 +49,20 @@ public class Company {
 	@Column(name="ent_telephone_fixe")
 	private String eTelephoneFixe;
 	
-	@OneToMany(mappedBy = "erNumeroSiret", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "erNumeroSiret", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <CompanyRole> companyRoles;
 	
 	public Company() {
 		
 	}
 
-	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eNomUtilisateur, String eMDP,
-			String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe, List<CompanyRole> companyRoles) {
+	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eEmail, String eNomUtilisateur,
+			String eMDP, String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe,
+			List<CompanyRole> companyRoles) {
 		this.eNumeroSiret = eNumeroSiret;
 		this.eNom = eNom;
 		this.ePrenom = ePrenom;
+		this.eEmail = eEmail;
 		this.eNomUtilisateur = eNomUtilisateur;
 		this.eMDP = eMDP;
 		this.eAdresse = eAdresse;
@@ -88,6 +94,14 @@ public class Company {
 
 	public void setePrenom(String ePrenom) {
 		this.ePrenom = ePrenom;
+	}
+
+	public String geteEmail() {
+		return eEmail;
+	}
+
+	public void seteEmail(String eEmail) {
+		this.eEmail = eEmail;
 	}
 
 	public String geteNomUtilisateur() {
@@ -148,8 +162,8 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom
-				+ ", eNomUtilisateur=" + eNomUtilisateur + ", eMDP=" + eMDP + ", eAdresse=" + eAdresse
+		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom + ", eEmail="
+				+ eEmail + ", eNomUtilisateur=" + eNomUtilisateur + ", eMDP=" + eMDP + ", eAdresse=" + eAdresse
 				+ ", eCodePostal=" + eCodePostal + ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe
 				+ ", companyRoles=" + companyRoles + "]";
 	}

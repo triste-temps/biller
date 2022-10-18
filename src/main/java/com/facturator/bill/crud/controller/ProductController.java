@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.facturator.bill.crud.entity.Product;
+import com.facturator.bill.crud.dto.ProductDTO;
+import com.facturator.bill.crud.dto.mapper.ProductMapper;
 import com.facturator.bill.crud.service.ProductService;
 
 @RestController
@@ -28,36 +29,36 @@ public class ProductController {
 	// post http://localhost:8080/billing/product
 	
 	@PostMapping("/product")
-	public Product saveProduit(@RequestBody Product product) {
-    Product newProduct = productService.saveProduct(product);
-    return newProduct;
+	public ProductDTO saveProduit(@RequestBody ProductDTO product) {
+    return ProductMapper.toDtoWithBillProduct(productService.saveProduct(ProductMapper.toEntity(product)));
 	}
-
+ 
 	// get http://localhost:8080/billing/listProduct
 	
 	@GetMapping("/listProduct")
-	public List<Product> allProduct(){
-		List<Product> listAllProduct = productService.allProduct();
-		return listAllProduct;
+	public List<ProductDTO> allProduct(){
+		return ProductMapper.toDtoListWithBillProduct(productService.allProduct());
 	}
 	
 	// get http://localhost:8080/billing/listProduct/1
 	
 	@GetMapping("/listProduct/{pReference}")
-		public Product findProduct(@PathVariable int pReference) {
-		Product newProduct = productService.findProduct(pReference);
+		public ProductDTO findProduct(@PathVariable int pReference) {
+		ProductDTO newProduct = ProductMapper.toDtoWithBillProduct(productService.findProduct(pReference));
 		return newProduct;
 	}
 
 	// put http://localhost:8080/billing/listProduct/
 	
 	@PutMapping("/listProduct")
-	public Product updateProduct(@RequestBody Product product) {
-		productService.saveProduct(product);
+	public ProductDTO updateProduct(@RequestBody ProductDTO product) {
+		if(product.getpReference()!=0) {
+				return saveProduit(product);
+		}
 		return product;
 	}
 	
-	// delete http://localhost:8080/billing/product/1
+	// delete http://localhost:8080/billing/listProduct/1
 
 	@DeleteMapping("/listProduct/{pReference}")
 	public void deleteProduct(@PathVariable("pReference") int id) {

@@ -1,10 +1,12 @@
 package com.facturator.bill.crud.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,23 +34,30 @@ public class Product {
 	@Column(name="pro_remarque")
 	private String pRemarque;
 	
-	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "fcReference", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <BillProduct> billProducts;
 	
 	public Product() {
 		
 	}
 
-	public Product(int pReference, String pDescription, Double pPrixHT, Double pTauxTVA, String pRemarque,
-			List<BillProduct> billProducts) {
+	public Product(int pReference, String pDescription, Double pPrixHT, Double pTauxTVA, String pRemarque) {
 		this.pReference = pReference;
 		this.pDescription = pDescription;
 		this.pPrixHT = pPrixHT;
 		this.pTauxTVA = pTauxTVA;
 		this.pRemarque = pRemarque;
-		this.billProducts = billProducts;
 	}
 
+	public void addBillProduct(BillProduct billProduct) {
+
+		if (billProducts==null) {
+			billProducts = new ArrayList<>();
+		}
+		billProduct.setFcReference(this);
+		this.billProducts.add(billProduct);
+	}
+	
 	public int getpReference() {
 		return pReference;
 	}

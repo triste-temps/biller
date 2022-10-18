@@ -1,62 +1,29 @@
-package com.facturator.bill.crud.entity;
+package com.facturator.bill.crud.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-@Entity
-@Table(name="client")
-public class Customer {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CustomerDTO {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cli_numero")
 	private int cNumero;
-	
-	@Column(name="cli_type")
 	private String cType;
-	
-	@Column(name="cli_nom_prenom_raison_sociale")
 	private String cNomPrenomRaisonSociale;
-	
-	@Column(name="cli_adresse")
 	private String cAdresse;
-	
-	@Column(name="cli_code_postal")
 	private String cCodePostal;
-	
-	@Column(name="cli_ville")
 	private String cVille;
-	
-	@Column(name="cli_telephone_mobile")
 	private String cTelephoneMobile;
-	
-	@Column(name="cli_telephone_fixe")
 	private String cTelephoneFixe;
-	
-	@Column(name="cli_site_internet")
 	private String cSiteInternet;
-	
-	@Column(name="cli_email")
 	private String cEmail;
+	private List <BillDTO> bills;
 	
-	@OneToMany(mappedBy = "fk_cNumero", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	private List <Bill> bills;
-	
-	public Customer() {
+	public CustomerDTO() {
 		
 	}
 
-	public Customer(int cNumero, String cType, String cNomPrenomRaisonSociale, String cAdresse, String cCodePostal,
+	public CustomerDTO(int cNumero, String cType, String cNomPrenomRaisonSociale, String cAdresse, String cCodePostal,
 			String cVille, String cTelephoneMobile, String cTelephoneFixe, String cSiteInternet, String cEmail) {
 		this.cNumero = cNumero;
 		this.cType = cType;
@@ -69,17 +36,6 @@ public class Customer {
 		this.cSiteInternet = cSiteInternet;
 		this.cEmail = cEmail;
 	}
-	
-	public void addBill(Bill bill) {
-		if (bills==null) {
-			bills = new ArrayList<>();
-		}
-		
-		bill.setFk_cNumero(this);
-		this.bills.add(bill);
-		
-	}
-	
 
 	public int getcNumero() {
 		return cNumero;
@@ -161,20 +117,13 @@ public class Customer {
 		this.cEmail = cEmail;
 	}
 
-	public List<Bill> getBills() {
+	public List<BillDTO> getBills() {
 		return bills;
 	}
 
-	public void setBills(List<Bill> bills) {
+	public void setBills(List<BillDTO> bills) {
 		this.bills = bills;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [cNumero=" + cNumero + ", cType=" + cType + ", cNomPrenomRaisonSociale="
-				+ cNomPrenomRaisonSociale + ", cAdresse=" + cAdresse + ", cCodePostal=" + cCodePostal + ", cVille="
-				+ cVille + ", cTelephoneMobile=" + cTelephoneMobile + ", cTelephoneFixe=" + cTelephoneFixe
-				+ ", cSiteInternet=" + cSiteInternet + ", cEmail=" + cEmail + ", bills=" + bills + "]";
-	}
-
+	
 }
