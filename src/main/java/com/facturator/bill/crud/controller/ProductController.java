@@ -3,6 +3,7 @@ package com.facturator.bill.crud.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +24,12 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-	// request body interragi avec le json on le fait dans le controller car c'est la derniere couche 
+	// request body interragit avec le json on le fait dans le controller car c'est la derniere couche 
 
 	// post http://localhost:8080/billing/product
 	
 	@PostMapping("/product")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Product saveProduit(@RequestBody Product product) {
     Product newProduct = productService.saveProduct(product);
     return newProduct;
@@ -36,6 +38,7 @@ public class ProductController {
 	// get http://localhost:8080/billing/listProduct
 	
 	@GetMapping("/listProduct")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	public List<Product> allProduct(){
 		List<Product> listAllProduct = productService.allProduct();
 		return listAllProduct;
@@ -44,6 +47,7 @@ public class ProductController {
 	// get http://localhost:8080/billing/listProduct/1
 	
 	@GetMapping("/listProduct/{pReference}")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 		public Product findProduct(@PathVariable int pReference) {
 		Product newProduct = productService.findProduct(pReference);
 		return newProduct;
@@ -52,6 +56,7 @@ public class ProductController {
 	// put http://localhost:8080/billing/listProduct/
 	
 	@PutMapping("/listProduct")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Product updateProduct(@RequestBody Product product) {
 		productService.saveProduct(product);
 		return product;
@@ -60,6 +65,7 @@ public class ProductController {
 	// delete http://localhost:8080/billing/product/1
 
 	@DeleteMapping("/listProduct/{pReference}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteProduct(@PathVariable("pReference") int id) {
 	productService.deleteProduct(id);
 

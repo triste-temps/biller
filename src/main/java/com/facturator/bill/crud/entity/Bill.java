@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,11 +44,11 @@ public class Bill {
 	@Column(name="fac_tva")
 	private Double fTVA;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="cli_numero")
 	private Customer fk_cNumero;
 	
-	@OneToMany(mappedBy = "fcReference", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "facture", cascade = CascadeType.ALL)
 	private List <BillProduct> billProducts;
 	
 	public Bill() {
