@@ -34,6 +34,7 @@ public class Product {
 	@Column(name="pro_remarque")
 	private String pRemarque;
 	
+
 	@OneToMany(mappedBy = "fcReference", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <BillProduct> billProducts;
 	

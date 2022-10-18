@@ -1,16 +1,13 @@
-package com.facturator.bill.crud.entity;
+/*package com.facturator.bill.crud.entity;
 
 import java.math.BigInteger;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -49,12 +46,14 @@ public class Company {
 	@Column(name="ent_telephone_fixe")
 	private String eTelephoneFixe;
 	
+
 	@OneToMany(mappedBy = "erNumeroSiret", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <CompanyRole> companyRoles;
 	
 	public Company() {
 		
 	}
+
 
 	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eEmail, String eNomUtilisateur,
 			String eMDP, String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe,
@@ -69,7 +68,6 @@ public class Company {
 		this.eCodePostal = eCodePostal;
 		this.eVille = eVille;
 		this.eTelephoneFixe = eTelephoneFixe;
-		this.companyRoles = companyRoles;
 	}
 
 	public BigInteger geteNumeroSiret() {
@@ -96,6 +94,7 @@ public class Company {
 		this.ePrenom = ePrenom;
 	}
 
+
 	public String geteEmail() {
 		return eEmail;
 	}
@@ -116,8 +115,8 @@ public class Company {
 		return eMDP;
 	}
 
-	public void seteMDP(String eMDP) {
-		this.eMDP = eMDP;
+	public void seteNomEntreprise(String eNomEntreprise) {
+		this.eNomEntreprise = eNomEntreprise;
 	}
 
 	public String geteAdresse() {
@@ -152,14 +151,6 @@ public class Company {
 		this.eTelephoneFixe = eTelephoneFixe;
 	}
 
-	public List<CompanyRole> getCompanyRoles() {
-		return companyRoles;
-	}
-
-	public void setCompanyRoles(List<CompanyRole> companyRoles) {
-		this.companyRoles = companyRoles;
-	}
-
 	@Override
 	public String toString() {
 		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom + ", eEmail="
@@ -167,5 +158,5 @@ public class Company {
 				+ ", eCodePostal=" + eCodePostal + ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe
 				+ ", companyRoles=" + companyRoles + "]";
 	}
-
-}
+	
+}*/

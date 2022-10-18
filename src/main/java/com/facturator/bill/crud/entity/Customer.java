@@ -49,6 +49,7 @@ public class Customer {
 	@Column(name="cli_email")
 	private String cEmail;
 	
+
 	@OneToMany(mappedBy = "fk_cNumero", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private List <Bill> bills;
 	
@@ -176,5 +177,4 @@ public class Customer {
 				+ cVille + ", cTelephoneMobile=" + cTelephoneMobile + ", cTelephoneFixe=" + cTelephoneFixe
 				+ ", cSiteInternet=" + cSiteInternet + ", cEmail=" + cEmail + ", bills=" + bills + "]";
 	}
-
 }

@@ -2,7 +2,6 @@ package com.facturator.bill.crud.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +17,7 @@ public class BillProduct {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="fc_id")
 	private int fcId;
+
 		
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pro_reference")
@@ -36,6 +36,7 @@ public class BillProduct {
 		this.fcId = fcId;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
+		this.fcQuantite = fcQuantite;
 	}
 
 	public int getFcId() {
@@ -62,9 +63,16 @@ public class BillProduct {
 		this.fcReference = fcReference;
 	}
 
+	public Double getFcQuantite() {
+		return fcQuantite;
+	}
+
+	public void setFcQuantite(Double fcQuantite) {
+		this.fcQuantite = fcQuantite;
+	}
+
 	@Override
 	public String toString() {
 		return "BillProduct [fcId=" + fcId + ", fcNumero=" + fcNumero + ", fcReference=" + fcReference + "]";
 	}
-	
 }
