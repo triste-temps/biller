@@ -1,65 +1,32 @@
-package com.facturator.bill.crud.entity;
+package com.facturator.bill.crud.dto;
 
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-@Entity
-@Table(name="facture")	
-public class Bill {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class BillDTO {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="fac_numero")
 	private int fNumero;
-	
-	@Column(name="fac_bon_de_commande")
 	private int fBonDeCommande;
-	
-	@Column(name="fac_date_facture")
 	private Date fDateFacture;
-	
-	@Column(name="fac_date_echeance")
 	private Date fDateEcheance;
-	
-	@Column(name="fac_paiement_recu")
 	private Date fPaiementRecu;
-	
-	@Column(name="fac_quantite_produit")
 	private Double fQuantiteProduit;
-	
-	@Column(name="fac_reglement")
 	private String fReglement;
-	
-	@Column(name="fac_pourcentage_remise")
 	private Double fPourcentageRemise;
-	
-	@Column(name="fac_tva")
 	private Double fTVA;
+	private CustomerDTO fk_cNumero;
+	private List <BillProductDTO> billProducts;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cli_numero")
-	private Customer fk_cNumero;
-	
-	@OneToMany(mappedBy = "fcNumero", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	private List <BillProduct> billProducts;
-	
-	public Bill() {
+	BillDTO(){
 		
 	}
 
-	public Bill(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
-			Double fQuantiteProduit, String fReglement, Double fPourcentageRemise, Double fTVA, Customer fk_cNumero) {
+	public BillDTO(int fNumero, int fBonDeCommande, Date fDateFacture, Date fDateEcheance, Date fPaiementRecu,
+			Double fQuantiteProduit, String fReglement, Double fPourcentageRemise, Double fTVA,
+			CustomerDTO fk_cNumero) {
 		this.fNumero = fNumero;
 		this.fBonDeCommande = fBonDeCommande;
 		this.fDateFacture = fDateFacture;
@@ -144,28 +111,20 @@ public class Bill {
 		this.fTVA = fTVA;
 	}
 
-	public Customer getFk_cNumero() {
+	public CustomerDTO getFk_cNumero() {
 		return fk_cNumero;
 	}
 
-	public void setFk_cNumero(Customer fk_cNumero) {
+	public void setFk_cNumero(CustomerDTO fk_cNumero) {
 		this.fk_cNumero = fk_cNumero;
 	}
 
-	public List<BillProduct> getBillProducts() {
+	public List<BillProductDTO> getBillProducts() {
 		return billProducts;
 	}
 
-	public void setBillProducts(List<BillProduct> billProducts) {
+	public void setBillProducts(List<BillProductDTO> billProducts) {
 		this.billProducts = billProducts;
-	}
-
-	@Override
-	public String toString() {
-		return "Bill [fNumero=" + fNumero + ", fBonDeCommande=" + fBonDeCommande + ", fDateFacture=" + fDateFacture
-				+ ", fDateEcheance=" + fDateEcheance + ", fPaiementRecu=" + fPaiementRecu + ", fQuantiteProduit="
-				+ fQuantiteProduit + ", fReglement=" + fReglement + ", fPourcentageRemise=" + fPourcentageRemise
-				+ ", fTVA=" + fTVA + ", fk_cNumero=" + fk_cNumero + ", billProducts=" + billProducts + "]";
 	}
 
 }

@@ -13,27 +13,26 @@ import javax.persistence.Table;
 @Table(name="facture_produit")	
 public class BillProduct {
 	
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id	
-	@JoinColumn(name="fc_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="fc_id")
 	private int fcId;
-	
-	@ManyToOne
-	@JoinColumn(name="fac_numero")
-	private Bill fcNumero;
 
-	@ManyToOne
+		
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pro_reference")
-	private Product fcReference;
+	private Bill fcNumero;
 	
-	@Column(name="fc_quantite")
-	private Double fcQuantite;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="fac_numero")
+	private Product fcReference;
 	
 	public BillProduct() {
 		
 	}
 
-	public BillProduct(int fcId, Bill fcNumero, Product fcReference, Double fcQuantite) {
+	public BillProduct(int fcId, Bill fcNumero, Product fcReference) {
 		this.fcId = fcId;
 		this.fcNumero = fcNumero;
 		this.fcReference = fcReference;
@@ -74,9 +73,6 @@ public class BillProduct {
 
 	@Override
 	public String toString() {
-		return "FactureProduit [fcId=" + fcId + ", fcNumero=" + fcNumero + ", fcReference=" + fcReference
-				+ ", fcQuantite=" + fcQuantite + "]";
+		return "BillProduct [fcId=" + fcId + ", fcNumero=" + fcNumero + ", fcReference=" + fcReference + "]";
 	}
-
-	
 }

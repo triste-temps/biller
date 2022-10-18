@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,8 +25,14 @@ public class Company {
 	@Column(name="ent_prenom")
 	private String ePrenom;
 	
-	@Column(name="ent_nom_entreprise")
-	private String eNomEntreprise;
+	@Column(name="ent_email_utilisateur")
+	private String eEmail;
+	
+	@Column(name="ent_nom_utilisateur")
+	private String eNomUtilisateur;
+	
+	@Column(name="ent_mot_de_passe")
+	private String eMDP;
 	
 	@Column(name="ent_adresse")
 	private String eAdresse;
@@ -39,16 +46,24 @@ public class Company {
 	@Column(name="ent_telephone_fixe")
 	private String eTelephoneFixe;
 	
+
+	@OneToMany(mappedBy = "erNumeroSiret", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	private List <CompanyRole> companyRoles;
+	
 	public Company() {
 		
 	}
 
-	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eNomEntreprise, String eAdresse,
-			String eCodePostal, String eVille, String eTelephoneFixe) {
+
+	public Company(BigInteger eNumeroSiret, String eNom, String ePrenom, String eEmail, String eNomUtilisateur,
+			String eMDP, String eAdresse, String eCodePostal, String eVille, String eTelephoneFixe,
+			List<CompanyRole> companyRoles) {
 		this.eNumeroSiret = eNumeroSiret;
 		this.eNom = eNom;
 		this.ePrenom = ePrenom;
-		this.eNomEntreprise = eNomEntreprise;
+		this.eEmail = eEmail;
+		this.eNomUtilisateur = eNomUtilisateur;
+		this.eMDP = eMDP;
 		this.eAdresse = eAdresse;
 		this.eCodePostal = eCodePostal;
 		this.eVille = eVille;
@@ -79,8 +94,25 @@ public class Company {
 		this.ePrenom = ePrenom;
 	}
 
-	public String geteNomEntreprise() {
-		return eNomEntreprise;
+
+	public String geteEmail() {
+		return eEmail;
+	}
+
+	public void seteEmail(String eEmail) {
+		this.eEmail = eEmail;
+	}
+
+	public String geteNomUtilisateur() {
+		return eNomUtilisateur;
+	}
+
+	public void seteNomUtilisateur(String eNomUtilisateur) {
+		this.eNomUtilisateur = eNomUtilisateur;
+	}
+
+	public String geteMDP() {
+		return eMDP;
 	}
 
 	public void seteNomEntreprise(String eNomEntreprise) {
@@ -121,9 +153,10 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Entreprise [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom
-				+ ", eNomEntreprise=" + eNomEntreprise + ", eAdresse=" + eAdresse + ", eCodePostal=" + eCodePostal
-				+ ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe + "]";
+		return "Company [eNumeroSiret=" + eNumeroSiret + ", eNom=" + eNom + ", ePrenom=" + ePrenom + ", eEmail="
+				+ eEmail + ", eNomUtilisateur=" + eNomUtilisateur + ", eMDP=" + eMDP + ", eAdresse=" + eAdresse
+				+ ", eCodePostal=" + eCodePostal + ", eVille=" + eVille + ", eTelephoneFixe=" + eTelephoneFixe
+				+ ", companyRoles=" + companyRoles + "]";
 	}
 	
 }*/
