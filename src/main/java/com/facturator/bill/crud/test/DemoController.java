@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TestController {
-
-	// Mapper pour "/test"
+public class DemoController {
 	
-	@GetMapping("/test")
+	// Mapper pour "/hello"
+	
+	@GetMapping("/hello")
 	public String Salut (Model mod) {
 		
 		// Ajout au model de l'attribut "date"
@@ -17,8 +17,8 @@ public class TestController {
 		
 		// Nom de la vue
 		// Avec spring-boot il recherche automatiquement dans 
-		// le dossier /src/main/ressources/templates/test.html
-		return "test";
+		// le dossier /src/main/ressources/templates/helloworld.html
+		return "helloworld";
 	}
-	
+
 }

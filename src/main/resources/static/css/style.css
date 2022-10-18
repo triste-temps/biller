@@ -1,0 +1,90 @@
+*{
+    font-family: sans-serif;
+}
+
+.login-form{
+    background-color: #f2f2f2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
+}
+
+.user-box{
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 1%;
+}
+
+.btn{
+    padding: 0.5%;
+    padding-left: 8%;
+    padding-right: 8%;
+    margin: 2.5%;
+    margin-top: 7.5%;
+    border-radius: 25px;
+    width: 150px;
+    background-color: #fff600;
+    border: none;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+.btn:active {
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
+}
+
+.user-box-bottom{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.btnCon{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-txt{
+    display: flex;
+    justify-content: center;
+
+}
+
+.message-co{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-top: 3%;
+}
+
+.title-input{
+    margin-top: 5%;
+    outline: 0;
+    background: transparent;
+    border-width: 0 0 3px;
+    border-image: linear-gradient(to right, #fce12c, #f4fc07) 1;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    padding-top: 3px;
+}
+
+a:hover{
+    text-decoration: underline;
+}
